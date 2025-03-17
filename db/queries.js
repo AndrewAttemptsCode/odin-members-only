@@ -18,5 +18,14 @@ const getUser = async (username) => {
   return rows[0];
 }
 
+const createUser = async (first_name, last_name, username, email, password) => {
+  await pool.query(`
+    INSERT INTO users (first_name, last_name, username, email, password)
+    VALUES
+      ($1, $2, $3, $4, $5)
+    `, [first_name, last_name, username, email, password]
+  );
+}
 
-module.exports = { deserializeUser, getUser };
+
+module.exports = { deserializeUser, getUser, createUser };

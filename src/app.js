@@ -1,10 +1,10 @@
 const path = require('path');
 const express = require('express');
-const pg = require('pg');
 const pgPool = require('../db/pool');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const passport = require('../config/passport');
+const authRouter = require('./routes/authRoute');
 
 const app = express();
 
@@ -29,5 +29,7 @@ app.use(passport.session());
 app.get('/', (req, res) => {
   res.send('test');
 })
+
+app.use('/auth', authRouter);
 
 module.exports = app;

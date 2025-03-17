@@ -27,5 +27,23 @@ const createUser = async (first_name, last_name, username, email, password) => {
   );
 }
 
+const getUserByEmail = async (email) => {
+  const { rows } = await pool.query(`
+    SELECT * FROM users
+    WHERE email = $1
+    `, [email]
+  );
+  return rows[0];
+}
 
-module.exports = { deserializeUser, getUser, createUser };
+const getUserByUsername = async (username) => {
+  const { rows } = await pool.query(`
+    SELECT * FROM users
+    WHERE username = $1
+    `, [username]
+  );
+  return rows[0];
+}
+
+
+module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail };

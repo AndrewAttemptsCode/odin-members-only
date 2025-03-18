@@ -4,16 +4,15 @@ const registerValidation = [
   body('first_name')
     .trim()
     .notEmpty().withMessage('First name is empty')
-    .customSanitizer(value =>
-      value.map(firstName => firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase())
-    ),
+    .customSanitizer(firstName =>
+      firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase())
+    ,
   
   body('last_name')
     .trim()
     .notEmpty().withMessage('Last name is empty')
-    .customSanitizer(value =>
-      value.map(lastName => lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase())
-    )
+    .customSanitizer(lastName =>
+      lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase())
     ,
 
   body('username')
@@ -53,7 +52,7 @@ const registerValidation = [
   body('confirmPassword')
     .trim()
     .notEmpty().withMessage('Confirm password is empty')
-    .custom((value, {req}) => {
+    .custom((value, { req }) => {
       if (value !== req.body.password) {
         throw new Error('Passwords do not match')
       }

@@ -1,4 +1,5 @@
 const { body } = require('express-validator');
+const db = require('../../db/queries');
 
 const registerValidation = [
   body('first_name')

@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const { validationResult } = require('express-validator');
 
 const getRegister = (req, res) => {
-  res.render('register', { title: 'Register Account' });
+  res.render('register', { title: 'Register an Account' });
 }
 
 const postRegister = asyncHandler(async (req, res) => {
@@ -12,7 +12,7 @@ const postRegister = asyncHandler(async (req, res) => {
 
   if (!errors.isEmpty()) {
     return res.status(400).render('register', {
-      title: 'Register Account',
+      title: 'Register an Account',
       errors: errors.array(),
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -29,4 +29,10 @@ const postRegister = asyncHandler(async (req, res) => {
 })
 
 module.exports = { getRegister, postRegister };
+
+// TODO: login route, login form validation
+// login authentication, login form view
+
+// auth check middleware, goes next() if auth -> req.isAuthenticated()
+// goes back to login route if not auth
 

@@ -34,6 +34,3 @@ const getLogin = (req, res) => {
 
 module.exports = { getRegister, postRegister, getLogin };
 
-// auth check middleware, goes next() if auth -> req.isAuthenticated()
-// goes back to login route if not auth
-

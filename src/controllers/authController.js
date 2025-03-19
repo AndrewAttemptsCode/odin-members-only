@@ -25,13 +25,14 @@ const postRegister = asyncHandler(async (req, res) => {
   
   const hashedPassword = await bcrypt.hash(password, 10);
   await db.createUser(first_name, last_name, username, email, hashedPassword);
-  res.redirect('/'); // '/auth/login' when route created or account created confirmation page
+  res.redirect('/auth/login');
 })
 
-module.exports = { getRegister, postRegister };
+const getLogin = (req, res) => {
+  res.render('login', { title: 'Log In' });
+}
 
-// TODO: login route, login form validation
-// login authentication, login form view
+module.exports = { getRegister, postRegister, getLogin };
 
 // auth check middleware, goes next() if auth -> req.isAuthenticated()
 // goes back to login route if not auth

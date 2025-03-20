@@ -19,3 +19,4 @@ authRoute.get('/join-club', isAuth, authController.getJoinClub);
 authRoute.post('/join-club', authController.postJoinClub);
 
 module.exports = authRoute;
+

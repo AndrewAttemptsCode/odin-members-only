@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+</head>
+<body>
+  <h1><%= title %></h1>
+  <p>Hey, <%= user.username %>.</p>
+  <p>If you can find the passcode on this page, you may join the club!</p>
+
+  <form action="/auth/join-club" method="post">
+    <label for="passcode">Passcode:</label>
+    <input type="password" name="passcode" id="passcode">
+    <button type="submit">Join Club</button>
+  </form>
+
+  <% if (locals.error) { %>
+    <p><%= error %></p>
+  <% }; %>
+
+  <span>supersecretpasscode</span>
+</body>
+</html>

@@ -45,5 +45,14 @@ const getUserByUsername = async (username) => {
   return rows[0];
 }
 
+const updateMemberStatus = async (userID) => {
+  await pool.query(`
+    UPDATE users
+    SET member_status = 't'
+    WHERE id = $1
+    `, [userID]
+  );
+}
 
-module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail };
+
+module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail, updateMemberStatus };

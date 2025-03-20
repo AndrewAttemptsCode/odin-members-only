@@ -32,5 +32,25 @@ const getLogin = (req, res) => {
   res.render('login', { title: 'Log In' });
 }
 
-module.exports = { getRegister, postRegister, getLogin };
+const getJoinClub = (req, res) => {
+  res.render('joinclub', { title: 'Join the club', user: req.user });
+}
+
+const postJoinClub = async (req, res) => {
+  const { passcode } = req.body;
+  const userID = req.user.id;
+
+  if (passcode !== process.env.CLUB_PASSCODE) {
+    return res.status(401).render('joinclub', {
+      title: 'Join the club',
+      user: req.user,
+      error: 'Incorrect passcode'
+    });
+  }
+
+  await db.updateMemberStatus(userID);
+  res.redirect('/') // temp goes back home, goes somewhere else after joined club
+}
+
+module.exports = { getRegister, postRegister, getLogin, getJoinClub, postJoinClub };
 

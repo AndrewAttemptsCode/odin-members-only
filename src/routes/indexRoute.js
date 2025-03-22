@@ -6,7 +6,6 @@ const indexRoute = Router();
 
 indexRoute.get('/', indexController.getIndex);
 indexRoute.get('/create-message', isAuthAndMember, indexController.getCreateMessage);
+indexRoute.post('/create-message', isAuthAndMember, indexController.postCreateMessage);
 
 module.exports = indexRoute;
-
-// TODO post route for insert into messages table

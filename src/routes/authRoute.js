@@ -18,5 +18,7 @@ authRoute.post('/login', passport.authenticate('local', {
 authRoute.get('/join-club', isAuth, authController.getJoinClub);
 authRoute.post('/join-club', authController.postJoinClub);
 
+authRoute.get('/logout', isAuth, authController.logout);
+
 module.exports = authRoute;
 

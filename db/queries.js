@@ -54,5 +54,13 @@ const updateMemberStatus = async (userID) => {
   );
 }
 
+const createMessage = async (userID, title, text) => {
+  await pool.query(`
+    INSERT INTO messages (user_id, title, text)
+    VALUES ($1, $2, $3)
+    `, [userID, title, text]
+  );
+}
 
-module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail, updateMemberStatus };
+
+module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail, updateMemberStatus, createMessage };

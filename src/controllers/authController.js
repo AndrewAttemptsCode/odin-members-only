@@ -9,20 +9,19 @@ const getRegister = (req, res) => {
 
 const postRegister = asyncHandler(async (req, res) => {
   const errors = validationResult(req);
-
+  const { first_name, last_name, username, email, password, confirmPassword } = req.body;
+  
   if (!errors.isEmpty()) {
     return res.status(400).render('register', {
       title: 'Register an Account',
       errors: errors.array(),
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      username: req.body.username,
-      email: req.body.email
+      first_name: first_name,
+      last_name: last_name,
+      username: username,
+      email: email
     });
   }
 
-  const { first_name, last_name, username, email, password, confirmPassword } = req.body;
-  
   const hashedPassword = await bcrypt.hash(password, 10);
   await db.createUser(first_name, last_name, username, email, hashedPassword);
   res.redirect('/auth/login');
@@ -49,8 +48,17 @@ const postJoinClub = async (req, res) => {
   }
 
   await db.updateMemberStatus(userID);
-  res.redirect('/') // temp goes back home, goes somewhere else after joined club
+  res.redirect('/')
 }
 
-module.exports = { getRegister, postRegister, getLogin, getJoinClub, postJoinClub };
+const logout = (req, res, next) => {
+  req.logout(err => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
+};
+
+module.exports = { getRegister, postRegister, getLogin, getJoinClub, postJoinClub, logout };
 

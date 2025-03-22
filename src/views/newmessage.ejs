@@ -8,11 +8,13 @@
 <body>
   <h1><%= title %></h1>
 
+  <%- include('partials/errors') %>
+
   <form action="/create-message" method="post">
     <label for="messageTitle">Title:</label>
-    <input type="text" name="title" id="messageTitle">
+    <input type="text" name="messageTitle" id="messageTitle" value="<%= locals.messageTitle %>">
     <label for="messageText">Message:</label>
-    <textarea name="text" id="messageText"></textarea>
+    <textarea name="messageText" id="messageText"><%= locals.messageText %></textarea>
     <button type="submit">Send Message</button>
   </form>
 </body>

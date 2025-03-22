@@ -54,11 +54,11 @@ const updateMemberStatus = async (userID) => {
   );
 }
 
-const createMessage = async (userID, title, text) => {
+const createMessage = async (userID, messageTitle, messageText) => {
   await pool.query(`
     INSERT INTO messages (user_id, title, text)
     VALUES ($1, $2, $3)
-    `, [userID, title, text]
+    `, [userID, messageTitle, messageText]
   );
 }
 

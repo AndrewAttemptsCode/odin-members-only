@@ -62,5 +62,21 @@ const createMessage = async (userID, messageTitle, messageText) => {
   );
 }
 
+const getAllMessages = async () => {
+  const { rows } = await pool.query(`
+    SELECT * FROM messages
+    `
+  );
+  return rows;
+}
 
-module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail, updateMemberStatus, createMessage };
+const getUserByID = async (userID) => {
+  const { rows } = await pool.query(`
+    SELECT username FROM users
+    WHERE id = $1
+    `, [userID]
+  );
+  return rows[0].username;
+}
+
+module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail, updateMemberStatus, createMessage, getAllMessages, getUserByID };

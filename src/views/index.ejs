@@ -22,6 +22,9 @@
             <%= message.title %>
             <%= message.text %>
             <%= message.dateFormatted %>
+            <% if (!user.admin) { %>
+              <a href="/auth/deleteMessage/<%= message.id %>">Delete</a>
+            <% }; %>
           </div>
         <% }); %>
         <a href="/create-message">Create Message</a>
@@ -40,6 +43,16 @@
 </body>
 </html>
 
-<!-- Display all member messages on the home page, 
-but only show the author and date of the 
-messages to other club-members. -->
+<!-- 
+add the ability to delete messages, 
+but only allow users who have admin == true
+to see the delete-button and delete messages.
+
+create isadmin middleware for the delete route
+- checks if logged in with isAuth and isAdmin
+- maybe allow admin not to be in club to see who posted
+
+add a way to actually mark a user as 
+an ‘admin’ so either add another secret pass-code 
+page, or just put an “is admin” checkbox on the 
+sign-up form. -->

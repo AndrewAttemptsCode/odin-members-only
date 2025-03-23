@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const { validationResult } = require('express-validator');
 
 const getRegister = (req, res) => {
-  res.render('register', { title: 'Register an Account' });
+  res.render('register', { title: 'Register an Account', user: req.user });
 }
 
 const postRegister = asyncHandler(async (req, res) => {
@@ -18,7 +18,8 @@ const postRegister = asyncHandler(async (req, res) => {
       first_name: first_name,
       last_name: last_name,
       username: username,
-      email: email
+      email: email,
+      user: req.user
     });
   }
 
@@ -28,7 +29,7 @@ const postRegister = asyncHandler(async (req, res) => {
 })
 
 const getLogin = (req, res) => {
-  res.render('login', { title: 'Log In' });
+  res.render('login', { title: 'Log In', user: req.user });
 }
 
 const getJoinClub = (req, res) => {

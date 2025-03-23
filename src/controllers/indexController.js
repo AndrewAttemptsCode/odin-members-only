@@ -7,7 +7,7 @@ const getIndex = (req, res) => {
 }
 
 const getCreateMessage = (req, res) => {
-  res.render('newmessage', { title: 'Create New Message' });
+  res.render('newmessage', { title: 'Create New Message', user: req.user });
 }
 
 const postCreateMessage = asyncHandler(async (req, res) => {
@@ -20,7 +20,8 @@ const postCreateMessage = asyncHandler(async (req, res) => {
       title: 'Create New Message',
       errors: errors.array(),
       messageTitle: messageTitle,
-      messageText: messageText
+      messageText: messageText,
+      user: req.user
     });
   }
 

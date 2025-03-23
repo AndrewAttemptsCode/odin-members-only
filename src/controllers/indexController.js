@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { validationResult } = require('express-validator');
 
 const getIndex = (req, res) => {
-  res.render('index', { title: 'Members Club', user: req.user });
+  res.render('index', { user: req.user });
 }
 
 const getCreateMessage = (req, res) => {

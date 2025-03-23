@@ -2,9 +2,25 @@ const db = require('../../db/queries');
 const asyncHandler = require('express-async-handler');
 const { validationResult } = require('express-validator');
 
-const getIndex = (req, res) => {
-  res.render('index', { user: req.user });
-}
+const getIndex = asyncHandler(async (req, res) => {
+  const messages = await db.getAllMessages();
+  
+  const formattedMessages = await Promise.all(messages.map(async (message) => {
+    const username = await db.getUserByID(message.user_id);
+    const dateObj = new Date(message.timestamp);
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const year = String(dateObj.getFullYear()).slice(-2);
+
+    return {
+      ...message,
+      dateFormatted: `${day}/${month}/${year}`,
+      username
+    };
+  }));
+  
+  res.render('index', { user: req.user, messages: formattedMessages });
+});
 
 const getCreateMessage = (req, res) => {
   res.render('newmessage', { title: 'Create New Message', user: req.user });

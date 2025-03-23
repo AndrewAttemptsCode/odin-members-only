@@ -1,0 +1,11 @@
+<div>
+  <% if (user) { %>
+    <a href="/create-message">Create Message</a>
+    <a href="/auth/logout">Logout</a>
+  <% } %>
+  
+  <% if (!user) { %>
+    <a href="/auth/register">Register</a>
+    <a href="/auth/login">Login</a>
+  <% } %>
+</div>

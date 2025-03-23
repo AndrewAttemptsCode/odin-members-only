@@ -14,10 +14,32 @@
   <main>
     <h1>Message Board</h1>
 
-    <% if (user) { %>
-      <a href="/create-message">Create Message</a>
-    <% } %>
+    <div>
+      <% if (user) { %>
+        <% messages.forEach(message => { %>
+          <div>
+            <%= message.username %>
+            <%= message.title %>
+            <%= message.text %>
+            <%= message.dateFormatted %>
+          </div>
+        <% }); %>
+        <a href="/create-message">Create Message</a>
+      <% } else { %>
+        <% messages.forEach(message => { %>
+          <div>
+            <%= message.title %>
+            <%= message.text %>
+          </div>
+        <% }); %>
+      <% }; %>
+    </div>
+    
   </main>
   
 </body>
 </html>
+
+<!-- Display all member messages on the home page, 
+but only show the author and date of the 
+messages to other club-members. -->

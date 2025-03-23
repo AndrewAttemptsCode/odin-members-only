@@ -6,20 +6,29 @@
   <title><%= title %></title>
 </head>
 <body>
-  <h1><%= title %></h1>
-  <p>Hey, <%= user.username %>.</p>
-  <p>If you can find the passcode on this page, you may join the club!</p>
+  <header>
+    <h1>Members Club</h1>
+    <%- include('partials/userauth') %>
+  </header>
 
-  <form action="/auth/join-club" method="post">
-    <label for="passcode">Passcode:</label>
-    <input type="password" name="passcode" id="passcode">
-    <button type="submit">Join Club</button>
-  </form>
+  <main>
+    <h1><%= title %></h1>
+    <p>Hey, <%= user.username %>.</p>
+    <p>Enter the passcode to gain access to submit messages</p>
+    <p>Passcode is hidden on this page.</p>
 
-  <% if (locals.error) { %>
-    <p><%= error %></p>
-  <% }; %>
+    <form action="/auth/join-club" method="post">
+      <label for="passcode">Passcode:</label>
+      <input type="password" name="passcode" id="passcode">
+      <button type="submit">Join Club</button>
+    </form>
 
-  <span>supersecretpasscode</span>
+    <% if (locals.error) { %>
+      <p><%= error %></p>
+    <% }; %>
+
+    <span>supersecretpasscode</span>
+  </main>
+  
 </body>
 </html>

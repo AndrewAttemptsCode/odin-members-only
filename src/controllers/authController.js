@@ -29,6 +29,10 @@ const postRegister = asyncHandler(async (req, res) => {
 })
 
 const getLogin = (req, res) => {
+  if (req.user) {
+    res.redirect('/');
+  }
+  
   res.render('login', { title: 'Log In', user: req.user });
 }
 
@@ -61,5 +65,11 @@ const logout = (req, res, next) => {
   });
 };
 
-module.exports = { getRegister, postRegister, getLogin, getJoinClub, postJoinClub, logout };
+const deleteMessage = asyncHandler(async (req, res) => {
+  const { messageID } = req.params;
+  await db.deleteMessage(messageID);
+  res.redirect('/');
+});
+
+module.exports = { getRegister, postRegister, getLogin, getJoinClub, postJoinClub, logout, deleteMessage };
 

@@ -87,4 +87,13 @@ const deleteMessage = async (messageID) => {
   );
 }
 
-module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail, updateMemberStatus, createMessage, getAllMessages, getUserByID, deleteMessage };
+const addAdmin = async (username) => {
+  await pool.query(`
+    UPDATE users
+    SET admin = 't'
+    WHERE username = $1
+    `, [username]
+  );
+}
+
+module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail, updateMemberStatus, createMessage, getAllMessages, getUserByID, deleteMessage, addAdmin };

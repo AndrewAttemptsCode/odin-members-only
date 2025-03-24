@@ -32,11 +32,14 @@ const getLogin = (req, res) => {
   if (req.user) {
     res.redirect('/');
   }
-  
+
   res.render('login', { title: 'Log In', user: req.user });
 }
 
 const getJoinClub = (req, res) => {
+  if (req.user.member_status) {
+    res.redirect('/');
+  }
   res.render('joinclub', { title: 'Join the club', user: req.user });
 }
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+</head>
+<body>
+  <header>
+    <h1>Members Club</h1>
+    <%- include('partials/userauth') %>
+  </header>
+
+  <main>
+    <h1><%= title %></h1>
+
+    <%- include('partials/errors') %>
+
+    <form action="/auth/add-admin" method="post">
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username">
+      <label for="passcode">Passcode:</label>
+      <input type="password" name="passcode" id="passcode">
+      <button type="submit">Add Admin</button>
+    </form>
+
+  </main>
+</body>
+</html>

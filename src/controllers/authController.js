@@ -74,5 +74,25 @@ const deleteMessage = asyncHandler(async (req, res) => {
   res.redirect('/');
 });
 
-module.exports = { getRegister, postRegister, getLogin, getJoinClub, postJoinClub, logout, deleteMessage };
+const getAddAdmin = (req, res) => {
+  res.render('addadmin', { title: 'Add new Admin', user: req.user });
+}
+
+const postAddAdmin = asyncHandler(async (req, res) => {
+  const errors = validationResult(req);
+  const { username } = req.body;
+
+  if (!errors.isEmpty()) {
+    return res.status(400).render('addadmin', {
+      title: 'Add new Admin',
+      errors: errors.array(),
+      user: req.user
+    })
+  }
+  
+  await db.addAdmin(username);
+  res.redirect('/');
+});
+
+module.exports = { getRegister, postRegister, getLogin, getJoinClub, postJoinClub, logout, deleteMessage, getAddAdmin, postAddAdmin };
 

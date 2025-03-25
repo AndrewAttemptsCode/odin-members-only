@@ -13,26 +13,28 @@
   </header>
 
   <main>
-    <h1>Message Board</h1>
-
-    <div>
+    
+    <div class="message-container">
+      <h1>Message Board</h1>
       <% if (user && user.member_status) { %>
         <% messages.forEach(message => { %>
-          <div>
-            <%= message.username %>
-            <%= message.title %>
-            <%= message.text %>
-            <%= message.dateFormatted %>
+          <div class="message-item">
+            <p><%= message.username %></p>
+            <div class="message-datedelete">
+              <p><%= message.dateFormatted %></p>
             <% if (user.admin) { %>
               <a href="/auth/delete-message/<%= message.id %>">Delete</a>
             <% }; %>
+            </div>
+            <h3><%= message.title %></h3>
+            <p><%= message.text %></p>
           </div>
         <% }); %>
       <% } else { %>
         <% messages.forEach(message => { %>
-          <div>
-            <%= message.title %>
-            <%= message.text %>
+          <div class="message-item">
+            <h3><%= message.title %></h3>
+            <p><%= message.text %></p>
           </div>
         <% }); %>
       <% }; %>

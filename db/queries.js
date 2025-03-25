@@ -65,6 +65,7 @@ const createMessage = async (userID, messageTitle, messageText) => {
 const getAllMessages = async () => {
   const { rows } = await pool.query(`
     SELECT * FROM messages
+    ORDER BY id DESC
     `
   );
   return rows;

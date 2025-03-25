@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Members Club</title>
 </head>
 <body>
@@ -27,7 +28,6 @@
             <% }; %>
           </div>
         <% }); %>
-        <a href="/create-message">Create Message</a>
       <% } else { %>
         <% messages.forEach(message => { %>
           <div>
@@ -35,9 +35,6 @@
             <%= message.text %>
           </div>
         <% }); %>
-        <% if (user) { %>
-          <a href="/create-message">Create Message</a>
-        <% } %>
       <% }; %>
     </div>
     

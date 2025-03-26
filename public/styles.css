@@ -56,7 +56,8 @@ header h1,
 .message-item p,
 .form-wrapper h1,
 .form-wrapper label,
-.form-wrapper button {
+.form-wrapper button,
+.form-wrapper.header {
   color: oklch(0.372 0.044 257.287);
 }
 
@@ -127,6 +128,11 @@ main {
 }
 
 /* Forms */
+
+.form-wrapper.header {
+  text-align: center;
+  gap: 0;
+}
 
 form {
   display: flex;
@@ -201,6 +207,10 @@ form button:hover {
 
 form button:hover::after {
   transform: scaleX(1);
+}
+
+.passcode {
+  color: transparent;
 }
 
 /* Responsive Design */

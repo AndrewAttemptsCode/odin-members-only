@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
   <title><%= title %></title>
 </head>
 <body>
@@ -12,22 +13,29 @@
   </header>
 
   <main>
-    <h1><%= title %></h1>
-    <p>Hey, <%= user.username %>.</p>
-    <p>Enter the passcode to gain access to submit messages</p>
-    <p>Passcode is hidden on this page.</p>
+    
+    <div class="form-wrapper">
+      <h1><%= title %></h1>
 
-    <form action="/auth/join-club" method="post">
-      <label for="passcode">Passcode:</label>
-      <input type="password" name="passcode" id="passcode">
-      <button type="submit">Join Club</button>
-    </form>
+      <div class="form-wrapper header">
+        <p>Hey, <%= user.username %>.</p>
+        <p>In order to send a message, you need to enter the secret passcode</p>
+        <p><i>(The passcode can be found hidden on this page)</i></p>
+      </div>
+      
+      <form action="/auth/join-club" method="post">
+        <label for="passcode">Passcode:</label>
+        <input type="password" name="passcode" id="passcode">
+        <button type="submit">Join Club</button>
+      </form>
+      <span class="passcode">supersecretpasscode</span>
+    </div>
+    
 
     <% if (locals.error) { %>
       <p><%= error %></p>
     <% }; %>
 
-    <span>supersecretpasscode</span>
   </main>
   
 </body>

@@ -134,6 +134,10 @@ form {
   width: 100%;
   min-width: 30ch;
   max-width: 50ch;
+  transform-origin: top;
+  transform: scaleY(0);
+  opacity: 0;
+  animation: stretchIn 1.2s forwards;
 }
 
 form label {
@@ -214,5 +218,21 @@ form button:hover::after {
 
   nav {
     gap: 0.5rem;
+  }
+}
+
+/* Keyframe Animations */
+
+@keyframes stretchIn {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleY(1.2);
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
   }
 }

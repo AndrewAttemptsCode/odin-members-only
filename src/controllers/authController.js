@@ -4,6 +4,9 @@ const asyncHandler = require('express-async-handler');
 const { validationResult } = require('express-validator');
 
 const getRegister = (req, res) => {
+  if (req.user) {
+    res.redirect('/');
+  }
   res.render('register', { title: 'Register an Account', user: req.user });
 }
 

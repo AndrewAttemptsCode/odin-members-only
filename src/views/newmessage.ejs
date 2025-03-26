@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title><%= title %></title>
 </head>
 <body>
@@ -12,17 +13,20 @@
   </header>
 
   <main>
-    <h1><%= title %></h1>
 
     <%- include('partials/errors') %>
 
-    <form action="/create-message" method="post">
-      <label for="messageTitle">Title:</label>
-      <input type="text" name="messageTitle" id="messageTitle" value="<%= locals.messageTitle %>">
-      <label for="messageText">Message:</label>
-      <textarea name="messageText" id="messageText"><%= locals.messageText %></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+    <div class="form-wrapper">
+      <h1><%= title %></h1>
+      <form action="/create-message" method="post">
+        <label for="messageTitle">Title:</label>
+        <input type="text" name="messageTitle" id="messageTitle" value="<%= locals.messageTitle %>">
+        <label for="messageText">Message:</label>
+        <textarea name="messageText" id="messageText"><%= locals.messageText %></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+    
   </main>
   
 </body>

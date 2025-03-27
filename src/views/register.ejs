@@ -14,11 +14,10 @@
 
   <main>
     
-    <%- include('partials/errors') %>
-
     <div class="form-wrapper">
       <h1><%= title %></h1>
       <form action="/auth/register" method="post">
+        <%- include('partials/errors') %>
         <label for="firstName">First Name:</label>
         <input type="text" name="first_name" id="firstName" value="<%= locals.first_name %>">
         <label for="lastName">Last Name:</label>

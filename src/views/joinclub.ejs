@@ -24,6 +24,9 @@
       </div>
       
       <form action="/auth/join-club" method="post">
+        <% if (locals.error) { %>
+          <p class="error-item"><%= error %></p>
+        <% }; %>
         <label for="passcode">Passcode:</label>
         <input type="password" name="passcode" id="passcode">
         <button type="submit">Join Club</button>
@@ -31,11 +34,6 @@
       <span class="passcode">supersecretpasscode</span>
     </div>
     
-
-    <% if (locals.error) { %>
-      <p><%= error %></p>
-    <% }; %>
-
   </main>
   
 </body>

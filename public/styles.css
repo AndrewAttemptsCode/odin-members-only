@@ -61,6 +61,10 @@ header h1,
   color: oklch(0.372 0.044 257.287);
 }
 
+.header-logo {
+  text-decoration: none;
+}
+
 nav {
   display: flex;
   gap: 1rem;

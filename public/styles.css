@@ -213,6 +213,19 @@ form button:hover::after {
   color: transparent;
 }
 
+/* Errors */
+
+.errors-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.error-item {
+  color: oklch(0.704 0.191 22.216);
+  font-weight: bold;
+}
+
 /* Responsive Design */
 
 @media (max-width: 460px) {

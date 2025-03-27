@@ -14,7 +14,7 @@ authRoute.post('/register', registerValidation, authController.postRegister);
 authRoute.get('/login', authController.getLogin);
 authRoute.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/auth/login'
+  failureRedirect: '/auth/login?error=Invalid Username or Password'
 }))
 
 authRoute.get('/join-club', isAuth, authController.getJoinClub);

@@ -17,7 +17,9 @@
     <div class="form-wrapper">
       <h1><%= title %></h1>
       <form action="/auth/login" method="post">
-        <%- include('partials/errors') %>
+        <% if (error) { %>
+          <p class="error-item"><%= error %></p>
+        <% } %>
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" value="<%= locals.username %>">
         <label for="password">Password:</label>

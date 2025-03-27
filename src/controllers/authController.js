@@ -36,7 +36,9 @@ const getLogin = (req, res) => {
     res.redirect('/');
   }
 
-  res.render('login', { title: 'Log In', user: req.user });
+  const error = req.query.error || '';
+
+  res.render('login', { title: 'Log In', user: req.user, error });
 }
 
 const getJoinClub = (req, res) => {

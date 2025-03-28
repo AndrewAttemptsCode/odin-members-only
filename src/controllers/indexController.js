@@ -3,8 +3,14 @@ const asyncHandler = require('express-async-handler');
 const { validationResult } = require('express-validator');
 
 const getIndex = asyncHandler(async (req, res) => {
+  const startTime = Date.now();
+  
   const messages = await db.getAllMessages();
   
+  console.log(`Get all messages took ${Date.now() - startTime}ms`);
+
+  const formatStartTime = Date.now();
+
   const formattedMessages = await Promise.all(messages.map(async (message) => {
     const username = await db.getUserByID(message.user_id);
     const dateObj = new Date(message.timestamp);
@@ -18,6 +24,9 @@ const getIndex = asyncHandler(async (req, res) => {
       username
     };
   }));
+
+  console.log(`Message formatting took ${Date.now() - formatStartTime}ms`);
+  console.log(`Total getIndex took ${Date.now() - formatStartTime}ms`);
   
   res.render('index', { user: req.user, messages: formattedMessages });
 });

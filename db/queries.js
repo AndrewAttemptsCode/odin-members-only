@@ -1,11 +1,14 @@
 const pool = require('./pool');
 
 const deserializeUser = async (userID) => {
+  const startTime = Date.now();
   const { rows } = await pool.query(`
-    SELECT * FROM users
+    SELECT id, username, member_status, admin 
+    FROM users
     WHERE id = $1
     `, [userID]
   );
+  console.log(`deserializeUser took ${Date.now() - startTime}ms`);
   return rows[0];
 }
 

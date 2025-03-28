@@ -16,10 +16,10 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
-  store: new pgSession({
-    pool : pgPool,
-    tableName : 'user_sessions'
-  }),
+  // store: new pgSession({
+  //   pool : pgPool,
+  //   tableName : 'user_sessions'
+  // }),
   secret: process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized: false,

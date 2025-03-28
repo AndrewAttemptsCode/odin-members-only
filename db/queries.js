@@ -64,20 +64,14 @@ const createMessage = async (userID, messageTitle, messageText) => {
 
 const getAllMessages = async () => {
   const { rows } = await pool.query(`
-    SELECT * FROM messages
-    ORDER BY id DESC
+    SELECT messages.*, users.username
+    FROM messages
+    INNER JOIN users
+    ON messages.user_id = users.id
+    ORDER BY messages.id DESC
     `
   );
   return rows;
-}
-
-const getUserByID = async (userID) => {
-  const { rows } = await pool.query(`
-    SELECT username FROM users
-    WHERE id = $1
-    `, [userID]
-  );
-  return rows[0].username;
 }
 
 const deleteMessage = async (messageID) => {
@@ -97,4 +91,4 @@ const addAdmin = async (username) => {
   );
 }
 
-module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail, updateMemberStatus, createMessage, getAllMessages, getUserByID, deleteMessage, addAdmin };
+module.exports = { deserializeUser, getUser, createUser, getUserByUsername, getUserByEmail, updateMemberStatus, createMessage, getAllMessages, deleteMessage, addAdmin };

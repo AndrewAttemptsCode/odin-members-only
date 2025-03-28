@@ -24,7 +24,7 @@ const getIndex = asyncHandler(async (req, res) => {
   });
 
   console.log(`Message formatting took ${Date.now() - formatStartTime}ms`);
-  console.log(`Total getIndex took ${Date.now() - formatStartTime}ms`);
+  console.log(`Total getIndex took ${Date.now() - startTime}ms`);
   
   res.render('index', { user: req.user, messages: formattedMessages });
 });

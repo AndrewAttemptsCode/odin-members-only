@@ -11,8 +11,7 @@ const getIndex = asyncHandler(async (req, res) => {
 
   const formatStartTime = Date.now();
 
-  const formattedMessages = await Promise.all(messages.map(async (message) => {
-    const username = await db.getUserByID(message.user_id);
+  const formattedMessages = messages.map(message => {
     const dateObj = new Date(message.timestamp);
     const day = String(dateObj.getDate()).padStart(2, '0');
     const month = String(dateObj.getMonth() + 1).padStart(2, '0');
@@ -20,10 +19,9 @@ const getIndex = asyncHandler(async (req, res) => {
 
     return {
       ...message,
-      dateFormatted: `${day}/${month}/${year}`,
-      username
+      dateFormatted: `${day}/${month}/${year}`
     };
-  }));
+  });
 
   console.log(`Message formatting took ${Date.now() - formatStartTime}ms`);
   console.log(`Total getIndex took ${Date.now() - formatStartTime}ms`);
